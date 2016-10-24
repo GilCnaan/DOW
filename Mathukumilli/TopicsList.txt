@@ -1,0 +1,17 @@
+Topics:
+
+[(0, u'0.058*wipe + 0.049*clean + 0.031*dry + 0.021*cant + 0.021*take + 0.020*leave'),
+ (1, u'0.045*wipe + 0.043*makeup + 0.038*face + 0.030*skin + 0.020*eye + 0.019*remove'),
+ (2, u'0.035*lint + 0.027*dog + 0.018*second + 0.016*linger + 0.015*deposit + 0.013*day'),
+ (3, u'0.034*new + 0.033*smell + 0.027*seemed + 0.026*read + 0.025*around + 0.021*cause'),
+ (4, u'0.092*wipe + 0.063*baby + 0.036*skin + 0.032*sensitive + 0.025*using + 0.020*rash'),
+ (5, u'0.064*glass + 0.053*clean + 0.039*car + 0.020*wipe + 0.020*cloth + 0.017*container'),
+ (6, u'0.108*wipe + 0.031*love + 0.026*like + 0.024*time + 0.017*hard + 0.015*wanted'),
+ (7, u'0.093*product + 0.028*skin + 0.021*natural + 0.018*face + 0.014*current + 0.013*purchase'),
+ (8, u'0.047*baby + 0.035*washcloth + 0.028*received + 0.027*soft + 0.026*great + 0.026*recommend'),
+ (9, u'0.096*wipe + 0.059*love + 0.047*clorox + 0.041*clean + 0.036*great + 0.034*easy'),
+ (10, u'0.116*wipe + 0.044*lysol + 0.027*used + 0.027*package + 0.026*year + 0.025*clorox'),
+ (11, u'0.100*wipe + 0.073*smell + 0.069*scent + 0.062*clean + 0.041*fresh + 0.037*love'),
+ (12, u'0.107*great + 0.057*work + 0.056*good + 0.038*product + 0.030*price + 0.023*shower'),
+ (13, u'0.098*wipe + 0.088*brand + 0.050*huggies + 0.038*pampers + 0.027*love + 0.026*diaper'),
+ (14, u'0.093*wipe + 0.023*bag + 0.022*small + 0.022*pack + 0.018*good + 0.017*great')]

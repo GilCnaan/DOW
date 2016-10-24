@@ -1,0 +1,138 @@
+---
+title: "Dow Project Initial Analysis"
+author: "Pallavi Damle"
+date: "October 23, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Dow Project Initial Analysis
+
+```{r data read, results='hide'} 
+# Converted in csv, read csv file of 16k reviews
+DowData = read.csv("C:\\Users\\pdamle\\Desktop\\project\\DowData.csv")
+```
+```{r data unique, results='hide'} 
+# Unique IDs 16027
+unique(DowData$ID)
+
+# Unique Author Locations  2404
+unique(DowData$Author.Location)
+
+# Unique Authors 13923
+unique(DowData$Author.Name)
+
+# Unique Review Rating levels are 9
+# [1]  60 100  80  20  40  90  70  50  30
+unique(DowData$Review.Rating)
+```
+
+## Check affinity of Consumer Review Ratings 
+
+```{r ratings, echo=FALSE}
+hist(DowData$Review.Rating)
+```
+
+Maximum reviews have higher ratings, Data analysis
+
+```{r functions, results='hide'}
+#install required packages
+list.of.packages <- c("NLP", "tm", "sqldf", "RWeka")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages, repos='http://cran.us.r-project.org')
+```
+
+```{r libraries, results='hide'}
+#load required libraries
+load.libraries <- c("NLP", "tm", "sqldf", "RWeka")
+lapply(load.libraries, FUN = function(load.libraries) {
+    do.call("require", list(load.libraries)) 
+})
+```
+
+```{r splitting data, results='hide'}
+#analyse reviews having rating less than or equal to 50, generate bigrams to evaluate any trends
+#performed for different values of review ratings
+colnames(DowData)[4] <- "Author_Name"
+colnames(DowData)[5] <- "Author_Location"
+colnames(DowData)[6] <- "Author_Sex"
+colnames(DowData)[7] <- "Author_Age"
+colnames(DowData)[8] <- "Review_Rating"
+colnames(DowData)[9] <- "Review_Type"
+
+badbiz = sqldf("select ID, Title, Text, Author_Name, Author_Location, Author_Sex, Author_Age, Review_Rating, Review_Type  from DowData where Review_Rating <=50 order by Review_Rating desc ")
+write.csv(badbiz,"C:\\Users\\pdamle\\Desktop\\project\\badbiz.csv")
+```
+
+```{r ngrams}
+# data clean and bigram generation
+data <- badbiz[,3]
+source("C:\\Users\\pdamle\\Desktop\\project\\tdmgenerate.r") 
+tdm <- tdm.generate(data, 2)
+tdm1.matrix <- as.matrix(tdm)
+freq1 = findFreqTerms(tdm, lowfreq = 20)
+head(sort(freq1, decreasing = TRUE))
+write.csv(freq1, "C:\\Users\\pdamle\\Desktop\\project\\badbiz_words.csv")
+
+# ran multiple iterations to get bigrams as 
+badbizwords = read.csv("C:\\Users\\pdamle\\Desktop\\project\\badbiz_words.csv")
+badbizwords$x
+```
+```{r tdmgenerate function, results='hide'}
+#tdmgenerate 
+'tdm.generate <- function(string, ng){
+  
+  # tutorial on rweka - http://tm.r-forge.r-project.org/faq.html
+  
+  corpus <- Corpus(VectorSource(string)) # create corpus for TM processing
+  corpus <- tm_map(corpus, content_transformer(tolower))
+  corpus <- tm_map(corpus, removeNumbers) 
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, stripWhitespace)
+  corpus <- tm_map(corpus, removeWords, stopwords("english")) 
+  options(mc.cores=1) # http://stackoverflow.com/questions/17703553/bigrams-instead-of-single-words-in-termdocument-matrix-using-r-and-rweka/20251039#20251039
+  BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = ng, max = ng)) # create n-grams
+  tdm <- TermDocumentMatrix(corpus, control = list(tokenize = BigramTokenizer)) # create tdm from n-grams
+  tdm
+}
+'
+```
+
+```{r final o/p, results='hide'}
+# ran against standard psoitive and negative word dictionary, bigram count program in Java returned 
+# 665 positive bigrams and 71 negative 
+# working on tweaking parameters and visualization of frquent positive and negative ngrams
+```
+
+```{r sentiment}
+# use R sentiment package to study polarity of review, emotion expressed and find corelation with actual stars received
+'url <- "https://cran.r-project.org/src/contrib/Archive/sentiment/sentiment_0.2.tar.gz"
+pkgFile <- "sentiment_0.2.tar.gz"
+download.file(url = url, destfile = pkgFile)
+
+# Install dependencies
+
+install.packages(c("Rstem"))
+
+# Install package
+install.packages(pkgs=pkgFile, type="source", repos=NULL)
+'
+library(sentiment)
+class_emo = classify_emotion(badbiz$Text, algorithm = "bayes", prior = 1.0)
+emotion = class_emo[,7]
+emotion[is.na(emotion)] = "unknown"
+
+
+class_pol = classify_polarity(badbiz$Text, algorithm = "bayes", prior = 1.0)
+polarity = class_pol[,4]
+
+df = data.frame(text=badbiz$Text, emotion = emotion, polarity = polarity, stringsAsFactors = FALSE, stars = badbiz$Review_Rating)
+df
+
+# haywire results for most positive reviews stars given are in the range of 20's and 40's
+```
+
+

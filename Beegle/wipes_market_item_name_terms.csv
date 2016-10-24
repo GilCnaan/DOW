@@ -1,0 +1,85 @@
+Term,Market,SubMarket
+baby wipe,Personal,Baby
+makeup remover,Personal,Facial
+antibacterial hand wipe,Personal,Hand
+face wipe,Personal,Facial
+allpurpose,Home,All-Purpose
+antibacterial hand,Personal,Hand
+boogie wipe,Personal,Baby
+baby,Personal,Baby
+hand,Personal,Hand
+face,Personal,Facial
+hand face,Personal,Hand
+hand face,Personal,Facial
+makeup,Personal,Facial
+appliance,Home,Appliance
+facial,Personal,Facial
+stuffy nose,Personal,Health
+first aid,Personal,Health
+saline,Personal,Health
+auto,Home,Automotive
+huggies,Personal,Baby
+automotive,Home,Automotive
+bathroom,Home,Bathroom
+car,Home,Automotive
+carpet,Home,Floor
+cat,Personal,Pets
+cleaning,Home,All-Purpose
+computer,Home,Electronics
+dermapet,Personal,Pets
+disinfecting,Home,All-Purpose
+dog,Personal,Pets
+dust,Home,Dusting
+medicated,Personal,Health
+duster,Home,Dusting
+dude,Personal,Toilet
+flushable,Personal,Toilet
+electronic,Home,Electronics
+floor,Home,Floor
+floormate,Home,Floor
+furniture,Home,Furniture
+glass,Home,Glass
+hard wood,Home,Floor
+shoe,Personal,Clothing
+purse,Personal,Clothing
+headlight,Home,Automotive
+home,Home,All-Purpose
+household,Home,All-Purpose
+diaper,Personal,Baby
+interior,Home,All-Purpose
+leather,Home,Leather
+lysol disinfecting,Home,All-Purpose
+monitor,Home,Electronics
+multisurface,Home,All-Purpose
+flannel,Personal,Clothing
+breast,Personal,Mother
+multiuse,Home,All-Purpose
+nose,Personal,Health
+breastpump,Personal,Mother
+tooth,Personal,Tooth
+retainer,Personal,Tooth
+mouth guard,Personal,Tooth
+skin,Personal,Skin
+rash,Personal,Skin
+acne,Personal,Skin
+pet,Home,Pets
+puppy,Home,Pets
+screen,Home,Electronics
+dental,Personal,Tooth
+pampers,Personal,Baby
+lens,Personal,Eye
+jewelry,Personal,Jewelry
+seat belt,Home,Automotive
+silver,Home,Silver
+steel,Home,Appliance
+sephora,Personal,Facial
+germx,Personal,Skin
+bathing,Personal,Skin
+suede,Home,Leather
+surface,Home,All-Purpose
+toilet,Home,Bathroom
+pacifier,Personal,Baby
+bathtub,Home,Bathroom
+mask,Personal,Facial
+sofetch,Personal,Pets
+waterwipe,Personal,Skin
